@@ -1,34 +1,19 @@
-﻿string Name = "Adam";
-bool IsMan = true;
-int Age = 37;
+﻿using System;
+using System.Globalization;
 
-if (IsMan && Age >= 18)
+int number = 4566;
+string numberInString = number.ToString();
+char[] letters = numberInString.ToCharArray();
+char[] digits = { '0' ,'1', '2', '3', '4', '5', '6', '7', '8', '9' };
+foreach (var digit in digits)
 {
-    Console.WriteLine("Pełnoletni Mężczyzna");
-}
-else if (!IsMan && Age >= 18)
-{
-    Console.WriteLine("Pełnoletnia Kobieta");
-}
-else
-{
-    Console.WriteLine("Niepełnoletnie dziecko");
-}
-
-if (IsMan && Age < 30)
-{
-    Console.WriteLine("Mężczyzna poniżej 30 lat");
-}
-else if (!IsMan && Age < 30)
-{
-    Console.WriteLine("Kobieta poniżej 30 lat");
-}
-
-if (Name == "Adam" && Age == 37)
-{
-    Console.WriteLine(Name + ", lat " + Age);
-}
-else
-{
-    Console.WriteLine("ktoś inny");
+    int finder = 0;
+    foreach (var letter in letters)
+    {
+        if (letter == digit)
+        {
+            ++finder;
+        }
+    }
+    Console.WriteLine(digit + " => " + finder);
 }
