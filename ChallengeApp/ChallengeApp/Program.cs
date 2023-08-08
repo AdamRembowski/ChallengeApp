@@ -1,19 +1,33 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Security.Cryptography;
+using ChallengeApp;
 
-int number = 4566;
-string numberInString = number.ToString();
-char[] letters = numberInString.ToCharArray();
-char[] digits = { '0' ,'1', '2', '3', '4', '5', '6', '7', '8', '9' };
-foreach (var digit in digits)
+List<Employee> employees = new List<Employee>();
+
+employees.Add(new Employee("Adam", "Rembowski", 37));
+employees.Add(new Employee("Tadeusz", "Nowak", 34));
+employees.Add(new Employee("Aleksandra", "Szulc", 30));
+
+employees[0].AddScore(10); employees[0].AddScore(7); employees[0].AddScore(3); employees[0].AddScore(8); employees[0].AddScore(6);
+employees[1].AddScore(6); employees[1].AddScore(8); employees[1].AddScore(5); employees[1].AddScore(9); employees[1].AddScore(3);
+employees[2].AddScore(8); employees[2].AddScore(6); employees[2].AddScore(5); employees[2].AddScore(9); employees[2].AddScore(9);
+
+List<Employee> winner = new List<Employee>();
+winner.Add(employees[0]);
+int result = employees[0].Result;
+foreach (Employee employee in employees)
 {
-    int finder = 0;
-    foreach (var letter in letters)
+    if (result < employee.Result)
     {
-        if (letter == digit)
-        {
-            ++finder;
-        }
+        result = employee.Result;
+        winner.Clear();
+        winner.Add(employee);
     }
-    Console.WriteLine(digit + " => " + finder);
+    else if(employee.Result == winner[0].Result && employee != winner[0])
+    {
+        winner.Add(employee);
+    }
+}
+foreach (Employee win in winner)
+{
+    Console.WriteLine("punktów: " + result + " - " + win.Name + " " + win.Surname + " lat:" + win.Age);
 }
