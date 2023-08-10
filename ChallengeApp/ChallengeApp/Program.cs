@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using ChallengeApp;
+﻿using ChallengeApp;
 
 List<Employee> employees = new List<Employee>();
 
@@ -22,7 +21,7 @@ foreach (Employee employee in employees)
         winner.Clear();
         winner.Add(employee);
     }
-    else if(employee.Result == winner[0].Result && employee != winner[0])
+    else if (employee.Result == winner[0].Result && employee != winner[0])
     {
         winner.Add(employee);
     }
