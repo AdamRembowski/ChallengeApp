@@ -9,19 +9,27 @@ namespace ChallengeApp.Tests
         public void TestEmployeeStatistics()
         {
             //arrange
-            var employee_1 = new Employee("Adam", "Rembowski");
-            var employee_2 = new Employee("Agnieszka", "Sobczak");
+            var employee_1 = new Employee("Adam", "Rembowski");            
             //act
             employee_1.AddGrade(10); employee_1.AddGrade(7); employee_1.AddGrade(3); employee_1.AddGrade(8); employee_1.AddGrade(6);
-            employee_2.AddGrade(8);  employee_2.AddGrade(6); employee_2.AddGrade(5); employee_2.AddGrade(9); employee_2.AddGrade(9);
-            //assert
-            Assert.AreEqual(employee_1.GetStatistics().Max, 10);
-            Assert.AreEqual(employee_1.GetStatistics().Min, 3);
-            Assert.AreEqual(employee_1.GetStatistics().Average, 6.80000019f);
 
-            Assert.AreEqual(employee_2.GetStatistics().Max, 9);
-            Assert.AreEqual(employee_2.GetStatistics().Min, 5);
-            Assert.AreEqual(employee_2.GetStatistics().Average, 7.4000001f);
+            //assert
+            Assert.AreEqual(employee_1.GetStatisticsWithForeach().Max, 10);
+            Assert.AreEqual(employee_1.GetStatisticsWithForeach().Min, 3);
+            Assert.AreEqual(employee_1.GetStatisticsWithForeach().Average, 6.80000019f);
+
+            Assert.AreEqual(employee_1.GetStatisticsWtihFor().Max, 10);
+            Assert.AreEqual(employee_1.GetStatisticsWtihFor().Min, 3);
+            Assert.AreEqual(employee_1.GetStatisticsWtihFor().Average, 6.80000019f);
+
+            Assert.AreEqual(employee_1.GetStatisticsWtihDoWhile().Max, 10);
+            Assert.AreEqual(employee_1.GetStatisticsWtihDoWhile().Min, 3);
+            Assert.AreEqual(employee_1.GetStatisticsWtihDoWhile().Average, 6.80000019f);
+
+            Assert.AreEqual(employee_1.GetStatisticsWithWhile().Max, 10);
+            Assert.AreEqual(employee_1.GetStatisticsWithWhile().Min, 3);
+            Assert.AreEqual(employee_1.GetStatisticsWithWhile().Average, 6.80000019f);
+
         }
     }
 }
