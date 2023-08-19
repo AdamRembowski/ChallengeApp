@@ -1,35 +1,46 @@
 ﻿using ChallengeApp;
 
-List<Employee> employees = new List<Employee>();
+var employee = new Employee("Adam", "Rembowski");
 
-employees.Add(new Employee("Adam", "Rembowski"));
-employees.Add(new Employee("Tadeusz", "Nowak"));
-employees.Add(new Employee("Aleksandra", "Szulc"));
-
-employees[0].AddGrade(10); employees[0].AddGrade(7); employees[0].AddGrade(3); employees[0].AddGrade(8); employees[0].AddGrade(6);
-employees[1].AddGrade(6); employees[1].AddGrade(8); employees[1].AddGrade(5); employees[1].AddGrade(9); employees[1].AddGrade(3);
-employees[2].AddGrade(8); employees[2].AddGrade(6); employees[2].AddGrade(5); employees[2].AddGrade(9); employees[2].AddGrade(9);
-
-//var employee = new Employee("", "");
-//var statistics = employee.GetStatistics();
-
-List<Employee> winner = new List<Employee>();
-winner.Add(employees[0]);
-var result = employees[0].GetStatistics().Average;
-foreach (Employee employee in employees)
+Console.WriteLine("Witaj kochany sprawdzaczu zadania domowego :)");
+Console.WriteLine("<><><><><><><><><><><><><><><><<><><><><><><>");
+Console.WriteLine();
+while (true)
 {
-    if (result < employee.GetStatistics().Average)
+    Console.WriteLine("Wprowadź kolejną ocenę lub wciśnij 'q' aby zakończyć");
+    var input = Console.ReadLine();
+    if (input == "q")
     {
-        result = employee.GetStatistics().Average;
-        winner.Clear();
-        winner.Add(employee);
+        break;
     }
-    else if (employee.GetStatistics().Average == winner[0].GetStatistics().Average && employee != winner[0])
+    else if (input != null && input != "")
     {
-        winner.Add(employee);
+        var indexer = input.ToCharArray().Length;
+        if (indexer <= 1)
+        {            
+            if (int.TryParse(input, out int result))
+            {
+                employee.AddGrade(input);
+            }
+            else
+            {
+                char inputChar = Convert.ToChar(input);
+                employee.AddGrade(inputChar);
+            }
+        }
+        else
+        {
+            employee.AddGrade(input);
+        }
+    }
+    else
+    {
+        Console.WriteLine("nie wprowadzono oceny");
     }
 }
-foreach (Employee win in winner)
-{
-    Console.WriteLine($"punktów: {result} {win.Name} { win.Surname}");
-}
+var statistics = employee.GetStatistics();
+Console.WriteLine($"Average: {statistics.AverageLetter}");
+Console.WriteLine($"Min: {statistics.Min}");
+Console.WriteLine($"Max: {statistics.Max}");
+
+

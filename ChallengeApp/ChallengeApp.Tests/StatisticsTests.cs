@@ -1,35 +1,48 @@
 ﻿using NUnit.Framework.Internal;
 using NUnit.Framework;
+using System;
 
 namespace ChallengeApp.Tests
 {
     public class StatisticsTests
     {
+
         [Test]
-        public void TestEmployeeStatistics()
+        public void TestEmployeeAddLetterGrade()
         {
             //arrange
-            var employee_1 = new Employee("Adam", "Rembowski");            
+            var employee = new Employee("Adam", "Rembowski");
             //act
-            employee_1.AddGrade(10); employee_1.AddGrade(7); employee_1.AddGrade(3); employee_1.AddGrade(8); employee_1.AddGrade(6);
-
+            string input = "A";
+            char inputChar = Convert.ToChar(input);
+            employee.AddGrade(inputChar);
+            var grade_A = employee.grades[0];
+            var indexer = input.ToCharArray().Length;
+            var statistics_A = employee.GetStatistics().AverageLetter;
             //assert
-            Assert.AreEqual(employee_1.GetStatisticsWithForeach().Max, 10);
-            Assert.AreEqual(employee_1.GetStatisticsWithForeach().Min, 3);
-            Assert.AreEqual(employee_1.GetStatisticsWithForeach().Average, 6.80000019f);
-
-            Assert.AreEqual(employee_1.GetStatisticsWtihFor().Max, 10);
-            Assert.AreEqual(employee_1.GetStatisticsWtihFor().Min, 3);
-            Assert.AreEqual(employee_1.GetStatisticsWtihFor().Average, 6.80000019f);
-
-            Assert.AreEqual(employee_1.GetStatisticsWtihDoWhile().Max, 10);
-            Assert.AreEqual(employee_1.GetStatisticsWtihDoWhile().Min, 3);
-            Assert.AreEqual(employee_1.GetStatisticsWtihDoWhile().Average, 6.80000019f);
-
-            Assert.AreEqual(employee_1.GetStatisticsWithWhile().Max, 10);
-            Assert.AreEqual(employee_1.GetStatisticsWithWhile().Min, 3);
-            Assert.AreEqual(employee_1.GetStatisticsWithWhile().Average, 6.80000019f);
-
+            Assert.AreEqual(grade_A, 100);
+            Assert.AreEqual(statistics_A, 'A');
+            Assert.AreEqual(inputChar, 'A');
+            Assert.AreEqual(indexer, 1);
+        }
+        [Test]
+        public void TestEmployeeGetStatistics()
+        {
+            //arrange
+            var employee = new Employee("Adam", "Rembowski");
+            //act
+            employee.AddGrade(100);
+            employee.AddGrade(15);
+            employee.AddGrade(43);
+            var statistics_AVG_L = employee.GetStatistics().AverageLetter;
+            var statistics_AVG = employee.GetStatistics().Average;
+            var statistics_Min = employee.GetStatistics().Min;
+            var statistics_Max = employee.GetStatistics().Max;
+            //assert
+            Assert.AreEqual(statistics_AVG_L, 'C');
+            Assert.AreEqual(statistics_AVG, 52.6666679f);
+            Assert.AreEqual(statistics_Min, 15);
+            Assert.AreEqual(statistics_Max, 100);
         }
     }
 }
