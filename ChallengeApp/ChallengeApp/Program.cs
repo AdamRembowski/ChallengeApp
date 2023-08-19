@@ -16,30 +16,53 @@ while (true)
     else if (input != null && input != "")
     {
         var indexer = input.ToCharArray().Length;
-        if (indexer <= 1)
+        if (indexer <= 1) // sprawdzam czy jest więcej niż jeden znak
         {            
-            if (int.TryParse(input, out int result))
+            if (double.TryParse(input, out double result))
+            {
+                try
+                {
+                    employee.AddGrade(result); //jeśli znak jest liczbą
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                } 
+            }
+            else //jeśli znak nie jest liczbą
+            {
+                try
+                {
+                    char inputChar = Convert.ToChar(input);
+                    employee.AddGrade(inputChar);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+        else // jeśli jest więcej znaków
+        {
+            try
             {
                 employee.AddGrade(input);
             }
-            else
+            catch(Exception ex)
             {
-                char inputChar = Convert.ToChar(input);
-                employee.AddGrade(inputChar);
+                Console.WriteLine(ex.Message);
             }
+
         }
-        else
-        {
-            employee.AddGrade(input);
-        }
-    }
+    } //jeśli nie wprowadzono żadnego ciągu znaków
     else
     {
         Console.WriteLine("nie wprowadzono oceny");
     }
 }
 var statistics = employee.GetStatistics();
-Console.WriteLine($"Average: {statistics.AverageLetter}");
+Console.WriteLine($"Average(L): {statistics.AverageLetter}");
+Console.WriteLine($"Average: {statistics.Average}");
 Console.WriteLine($"Min: {statistics.Min}");
 Console.WriteLine($"Max: {statistics.Max}");
 

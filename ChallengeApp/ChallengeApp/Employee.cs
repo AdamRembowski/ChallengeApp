@@ -22,7 +22,7 @@ namespace ChallengeApp
             }
             else
             {
-                Console.WriteLine("invalid grade value");
+                throw new Exception("invalid grade value");
             }
         }
         public void AddGrade(string grade)
@@ -33,7 +33,7 @@ namespace ChallengeApp
             }
             else
             {
-                Console.WriteLine("String does not contain correct value");
+                throw new Exception("String does not contain correct value");                
             }
         }
         public void AddGrade(double grade)
@@ -65,8 +65,8 @@ namespace ChallengeApp
                 case 'e':
                     this.grades.Add(20);
                     break;
-                default: Console.WriteLine("Wrong Char");
-                    break;
+                default:
+                    throw new Exception("Wrong Char");
             }
         }
 
