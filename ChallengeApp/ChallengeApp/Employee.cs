@@ -1,18 +1,10 @@
-﻿using System;
-using System.Diagnostics;
-using System.Reflection.Metadata.Ecma335;
-
-namespace ChallengeApp
+﻿namespace ChallengeApp
 {
-    public class Employee
+    public class Employee : Person
     {
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
         public List<float> grades = new List<float>();
-        public Employee(string name, string surname)
+        public Employee(string name, string surname, int age, bool sex) : base(name, surname, age, sex)
         {
-            this.Name = name;
-            this.Surname = surname;
         }
         public void AddGrade(float grade)
         {
@@ -33,7 +25,7 @@ namespace ChallengeApp
             }
             else
             {
-                throw new Exception("String does not contain correct value");                
+                throw new Exception("String does not contain correct value");
             }
         }
         public void AddGrade(double grade)
@@ -69,7 +61,6 @@ namespace ChallengeApp
                     throw new Exception("Wrong Char");
             }
         }
-
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();
@@ -84,7 +75,6 @@ namespace ChallengeApp
                 statistics.Average += grade;
             }
             statistics.Average /= this.grades.Count;
-
             switch (statistics.Average)
             {
                 case var average when average >= 80:
@@ -103,7 +93,6 @@ namespace ChallengeApp
                     statistics.AverageLetter = 'E';
                     break;
             }
-
             return statistics;
         }
     }

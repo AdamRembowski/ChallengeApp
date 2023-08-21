@@ -1,6 +1,6 @@
 ﻿using ChallengeApp;
 
-var employee = new Employee("Adam", "Rembowski");
+var employee = new Employee("Adam", "Rembowski", 37, true);
 
 Console.WriteLine("Witaj kochany sprawdzaczu zadania domowego :)");
 Console.WriteLine("<><><><><><><><><><><><><><><><<><><><><><><>");
@@ -17,7 +17,7 @@ while (true)
     {
         var indexer = input.ToCharArray().Length;
         if (indexer <= 1) // sprawdzam czy jest więcej niż jeden znak
-        {            
+        {
             if (double.TryParse(input, out double result))
             {
                 try
@@ -27,7 +27,7 @@ while (true)
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                } 
+                }
             }
             else //jeśli znak nie jest liczbą
             {
@@ -48,7 +48,7 @@ while (true)
             {
                 employee.AddGrade(input);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }

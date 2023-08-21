@@ -11,7 +11,7 @@ namespace ChallengeApp.Tests
         public void TestEmployeeAddLetterGrade()
         {
             //arrange
-            var employee = new Employee("Adam", "Rembowski");
+            var employee = new Employee("Adam", "Rembowski", 37, true);
             //act
             string input = "A";
             char inputChar = Convert.ToChar(input);
@@ -29,7 +29,7 @@ namespace ChallengeApp.Tests
         public void TestEmployeeGetStatistics()
         {
             //arrange
-            var employee = new Employee("Adam", "Rembowski");
+            var employee = new Employee("Adam", "Rembowski", 37, true);
             //act
             employee.AddGrade(100);
             employee.AddGrade(15);
