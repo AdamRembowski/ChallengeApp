@@ -1,6 +1,6 @@
 ﻿using ChallengeApp;
 
-var employee = new Employee("Adam", "Rembowski", 37, true);
+var employee = new Employee("Adam", "Rembowski");
 
 Console.WriteLine("Witaj kochany sprawdzaczu zadania domowego :)");
 Console.WriteLine("<><><><><><><><><><><><><><><><<><><><><><><>");

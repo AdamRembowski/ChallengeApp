@@ -29,7 +29,7 @@ namespace ChallengeApp.Tests
         public void TestEmployeeGetStatistics()
         {
             //arrange
-            var employee = new Employee("Adam", "Rembowski", 37, true);
+            var employee = new Employee("Adam", "Rembowski");
             //act
             employee.AddGrade(100);
             employee.AddGrade(15);
