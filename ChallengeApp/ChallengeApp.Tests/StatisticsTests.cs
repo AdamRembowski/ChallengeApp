@@ -1,22 +1,19 @@
-﻿using NUnit.Framework.Internal;
-using NUnit.Framework;
-using System;
-
+﻿using NUnit.Framework;
 namespace ChallengeApp.Tests
 {
     public class StatisticsTests
     {
 
         [Test]
-        public void TestEmployeeAddLetterGrade()
+        public void TestEmployeeInFileAddLetterGrade()
         {
             //arrange
-            var employee = new Employee("Adam", "Rembowski", 37, true);
+            var employee = new EmployeeInFile("Adam", "Rembowski");
             //act
             string input = "A";
             char inputChar = Convert.ToChar(input);
             employee.AddGrade(inputChar);
-            var grade_A = employee.grades[0];
+            var grade_A = employee.grades.First();
             var indexer = input.ToCharArray().Length;
             var statistics_A = employee.GetStatistics().AverageLetter;
             //assert
@@ -26,19 +23,34 @@ namespace ChallengeApp.Tests
             Assert.AreEqual(indexer, 1);
         }
         [Test]
-        public void TestEmployeeGetStatistics()
+        public void TestEmployeeInFileGetStatisticsAndWriteToFile()
         {
             //arrange
-            var employee = new Employee("Adam", "Rembowski");
+            var employee = new EmployeeInFile("Adam", "Rembowski");
             //act
-            employee.AddGrade(100);
-            employee.AddGrade(15);
+            employee.AddGrade(100f);
+            employee.AddGrade(15d);
             employee.AddGrade(43);
             var statistics_AVG_L = employee.GetStatistics().AverageLetter;
             var statistics_AVG = employee.GetStatistics().Average;
             var statistics_Min = employee.GetStatistics().Min;
             var statistics_Max = employee.GetStatistics().Max;
             //assert
+            Assert.AreEqual(statistics_AVG_L, 'C');
+            Assert.AreEqual(statistics_AVG, 52.6666679f);
+            Assert.AreEqual(statistics_Min, 15);
+            Assert.AreEqual(statistics_Max, 100);
+        }
+        [Test]
+        public void TestEmployeeInFileGetStatisticsWithReadFromFile()
+        {
+            //arrange
+            var employee = new EmployeeInFile("Adam", "Rembowski");
+            //act
+            var statistics_AVG_L = employee.GetStatistics().AverageLetter;
+            var statistics_AVG = employee.GetStatistics().Average;
+            var statistics_Min = employee.GetStatistics().Min;
+            var statistics_Max = employee.GetStatistics().Max;
             Assert.AreEqual(statistics_AVG_L, 'C');
             Assert.AreEqual(statistics_AVG, 52.6666679f);
             Assert.AreEqual(statistics_Min, 15);
