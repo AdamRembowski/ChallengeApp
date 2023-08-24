@@ -2,6 +2,8 @@
 {
     public class EmployeeBase : IEmployee
     {
+        public delegate void GradeAddDelegate(object sender, EventArgs args);
+        public event GradeAddDelegate GradeAdded;
         public EmployeeBase(string name, string surname)
         {
             this.Name = name;
@@ -15,6 +17,10 @@
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {

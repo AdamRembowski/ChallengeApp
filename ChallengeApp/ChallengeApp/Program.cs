@@ -1,11 +1,20 @@
 ﻿using ChallengeApp;
 
-var employee = new EmployeeInFile("Adam", "Rembowski");
+var employee = new EmployeeInMemory("Adam", "Rembowski");
 
 Console.WriteLine("Witaj kochany sprawdzaczu zadania domowego :)");
 Console.WriteLine("<><><><><><><><><><><><><><><><<><><><><><><>");
 Console.WriteLine();
+
+
+employee.GradeAdded += EmployeeGradeAdded;
 employee.AddGrade(0.5f);
+
+void EmployeeGradeAdded(object sender, EventArgs args)
+{
+    Console.WriteLine("Dodano nową ocenę");
+}
+
 
 //while (true)
 //{
